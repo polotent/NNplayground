@@ -1,0 +1,192 @@
+@font-face {
+  font-family: 'Ubuntu';
+  src: url("../fonts/Ubuntu-Regular.ttf");
+}
+
+h1, h2, h3 {
+  text-align : center;
+  color : #ffffff;
+  margin-top : 10px;
+  margin-bottom : 10px;
+  font-family : Ubuntu;
+}
+h1 {
+  font-size: 25px;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  color : #000000;
+  font-size: 18px;
+}
+#prediction {
+  font-size: 30px;
+  font-family: Ubuntu;
+  font-weight: bold;
+  background-color: rgb(0, 0, 0);
+  color : rgb(255, 255, 255);
+  padding : 3px 6px;
+  display: none;
+}
+.guessing-answer {
+  margin-bottom: 15px;
+}
+.header {
+  text-align: center;
+  background-color : rgb(55, 119, 76);
+}
+.training-header {
+  background-color : rgb(98, 98, 78);
+  /* background-color : rgb(140, 121, 63); */
+}
+.testing-header {
+  background-color : rgb(98, 98, 78);
+  /* background-color : rgb(105, 62, 120); */
+}
+.guessing-header {
+  background-color : rgb(98, 98, 78);
+  /* background-color : rgb(43, 110, 122); */
+}
+.upload-header {
+  background-color : rgb(98, 98, 78);
+  /* background-color: rgb(149, 78, 112); */
+}
+.save-header {
+  background-color : rgb(98, 98, 78);
+  /* background-color : rgb(121, 77, 55); */
+}
+.config-header {
+  background-color : rgb(98, 98, 78);
+}
+
+.guessing-challange {
+  background-color: #e4e4e4;
+}
+.training-field, .testing-field, .guessing-field, .upload-field, .save-field, .config-field {
+  text-align: center;
+  background-color: #e4e4e4;
+}
+.challange-header {
+  margin-bottom: 0px;
+}
+
+#guessing-canvas {
+  text-align: center;
+}
+.padd {
+  margin-top : 10px;
+  margin-left : 5px;
+  margin-right : 5px;
+  margin-bottom : 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+#control, #clear {
+  margin-top : 10px;
+  margin-bottom : 5px;
+  width : 300px;
+  font-family: Ubuntu;
+}
+#clear {
+  margin-bottom: 10px;
+}
+#save {
+  margin-top : 10px;
+  margin-bottom : 10px;
+}
+#upload, #reset {
+  margin-top : 10px;
+}
+
+.progress-header, .chart-header {
+  margin-top : 5px;
+  margin-bottom : 5px;
+}
+
+#error-chart {
+  width : 100%;
+  height: auto;
+  transition: none;
+}
+.progress-bar {
+  transition: none;
+  font-weight: bold;
+}
+
+#status-label {
+  border-radius: 4px;
+  background-color: rgb(217, 83, 79);
+  padding : 3px 6px;
+  color : #ffffff;
+}
+#status-epoch {
+  border-radius: 4px;
+  background-color: rgb(55, 119, 76);
+  padding : 3px 6px;
+  color : #ffffff;
+}
+
+#files {
+  margin-top: 10px;
+  display : inline;
+}
+
+#model-name {
+  margin-top : 10px;
+}
+
+#select-zone {
+  width : 172px;
+  display : inline-block;
+  margin-top : 10px;
+  margin-bottom : 10px;
+  text-align: center;
+  font-size: 20px;
+}
+.zone-label {
+  margin-top : 15px;
+  margin-bottom : 15px;
+  display : inline-block;
+}
+#item-list {
+  margin-bottom : 5px;
+}
+
+#files {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.pickField {
+  margin-top : 10px;
+  padding : 4px 8px 4px 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: 100;
+  background-color : rgb(92, 184, 92);
+  display: inline-block;
+  border-radius: 2px;
+}
+.pickField:hover {
+  background-color : rgb(70, 133, 70);
+}
+.upload-filename{
+  margin-top : 5px;
+  margin-bottom : 5px;
+}
+.config-line {
+  margin-top : 10px;
+  text-align : right;
+}
+.config-line > label {
+  margin-top : 6px;
+}
+form {
+  margin-bottom : 10px;
+}
+#change-notification {
+  display : none;
+}
