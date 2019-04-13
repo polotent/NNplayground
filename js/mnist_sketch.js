@@ -158,7 +158,7 @@ function train(training){
 
   nnMain.train(inputs, targets);
 
-  stuff.progress = (stuff.index / stuff.trainQuantity) * 100;
+  stuff.progress = ((stuff.index + 1) / stuff.trainQuantity) * 100;
 
   els.bars.progress.html(nf(stuff.progress, 2, 2) + '%');
   els.bars.progress.style('width', nf(stuff.progress, 2, 2) + '%');
@@ -194,7 +194,7 @@ function validate(validating){
     }
   }
 
-  stuff.progress = (stuff.index / stuff.validationQuantity) * 100;
+  stuff.progress = ((stuff.index + 1) / stuff.validationQuantity) * 100;
   stuff.accuracy = (stuff.correct / stuff.index) * 100;
 
   els.bars.progress.html(nf(stuff.progress, 2, 2) + '%');
@@ -240,7 +240,7 @@ function test(testing){
     }
   }
 
-  stuff.progress = (stuff.index / stuff.testQuantity) * 100;
+  stuff.progress = ((stuff.index + 1) / stuff.testQuantity) * 100;
   stuff.accuracy = (stuff.correct / stuff.index) * 100;
 
   els.bars.progress.html(nf(stuff.progress, 2, 2) + '%');
@@ -359,19 +359,41 @@ function setup(){
     saveAs(blob, els.inputs.modelName.value() + ".json");
   });
 
-  // UPLOAD BUTTON
-  els.buttons.upload = select("#upload");
-  els.buttons.upload.mousePressed(function(){
-    if (currentPath != ""){
-      let buffBool = stuff.drawn;
-      stuff = loadJSON(currentPath, function(){
-        updatePage = true;
-        let buff = currentFilename.substring(0, currentFilename.lastIndexOf('.'));
-        els.labels.filename.html(buff);
-        stuff.drawn = buffBool;
-      });
-    }
+
+  // MNIST AND QD BUTTONS LOAD MODELS
+  els.buttons.mnistLoad = select("#mnist100");
+  els.buttons.mnistLoad.mousePressed(function(){
+    let buffBool = stuff.drawn;
+    stuff = loadJSON("./models/mnist100.json", function(){
+      updatePage = true;
+      els.labels.filename.html("mnist100");
+      stuff.drawn = buffBool;
+    });
   });
+
+  els.buttons.qdLoad = select("#quickdraw100");
+  els.buttons.qdLoad.mousePressed(function(){
+    let buffBool = stuff.drawn;
+    stuff = loadJSON("./models/quickdraw100.json", function(){
+      updatePage = true;
+      els.labels.filename.html("quickdraw100");
+      stuff.drawn = buffBool;
+    });
+  });
+
+  // UPLOAD BUTTON
+  // els.buttons.upload = select("#upload");
+  // els.buttons.upload.mousePressed(function(){
+  //   if (currentPath != ""){
+  //     let buffBool = stuff.drawn;
+  //     stuff = loadJSON(currentPath, function(){
+  //       updatePage = true;
+  //       let buff = currentFilename.substring(0, currentFilename.lastIndexOf('.'));
+  //       els.labels.filename.html(buff);
+  //       stuff.drawn = buffBool;
+  //     });
+  //   }
+  // });
 
   //RESET BUTTON
   els.buttons.reset = select("#reset");
@@ -403,6 +425,18 @@ function setup(){
   $('#files').change(function(event){
     currentPath = URL.createObjectURL(event.target.files[0]);
     currentFilename = event.target.files[0].name;
+
+    if (currentPath != ""){
+      let buffBool = stuff.drawn;
+      stuff = loadJSON(currentPath, function(){
+        updatePage = true;
+        let buff = currentFilename.substring(0, currentFilename.lastIndexOf('.'));
+        els.labels.filename.html(buff);
+        stuff.drawn = buffBool;
+      }, function(response){
+        els.labels.filename.html("File read error!");
+      });
+    }
   })
 
   // LABELS

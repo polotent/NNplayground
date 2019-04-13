@@ -15,9 +15,8 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- jQuery -->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
-	<script src="js/jquery-2.2.4.js"></script>
-	
+	  <script src="js/jquery-2.2.4.js"></script>
+
     <script src="js/bootstrap.js"></script>
 
     <script src="js/Chart.js"></script>
@@ -34,8 +33,8 @@
 
     <script>
       var loadFile = function(event) {
-        var fileLabel = document.getElementById('upload-filename');
-        fileLabel.innerHTML = event.target.files[0].name;
+        // var fileLabel = document.getElementById('upload-filename');
+        // fileLabel.innerHTML = event.target.files[0].name;
         var output = document.getElementById('files');
         output.src = URL.createObjectURL(event.target.files[0]);
       };
@@ -72,15 +71,26 @@
 
             <div class="col-xs-12 upload-field">
               <div class="row">
-                <label class="pickField" for="files">CHOOSE FILE</label>
-                <input type="file" id="files" name="files[]" onchange="loadFile(event)">
-                <h3 class="upload-filename">CHOOSEN FILE : <span id="upload-filename">NONE</span></h3>
+                <div class="col-xs-6">
+                  <h3>UPLOAD FILE FROM YOUR COMPUTER</h3>
+                  <label class="pickField" for="files">CHOOSE FILE</label>
+                </div>
+                <div class="col-xs-6">
+                  <h3>TRAINED MODELS</h3>
+                  <label id="mnist100" class="pickField mnist-label">MNIST 1 layer 100 neurons</label>
+                  <label id="quickdraw100" class="pickField quickdraw-label">QUICKDRAW 1 layer 100 neurons</label>
+                </div>
+
+                <div class="col-xs-12">
+                  <input type="file" id="files" name="files[]" onchange="loadFile(event)">
+                  <!-- <h3 class="upload-filename">CHOOSEN FILE : <span id="upload-filename">NONE</span></h3> -->
+                </div>
               </div>
 
-              <button id="upload" type="button" class="btn btn-primary">UPLOAD</button>
-              <button id="reset" type="button" class="btn btn-danger">RESET</button>
-              <h3>LOADED MODEL : <span id="filename">UNTITLED</span></h3>
+              <!-- <button id="upload" type="button" class="btn btn-primary">UPLOAD</button> -->
 
+              <h3>LOADED MODEL : <span id="filename">UNTITLED</span></h3>
+              <button id="reset" type="button" class="btn btn-danger">RESET</button>
             </div>
           </div>
 
@@ -90,6 +100,7 @@
             </div>
 
             <div class="col-xs-12 config-field">
+              <h3>MULTILAYER PERCEPTRON</h3>
               <form>
                 <div class="form-group row config-line">
                   <label for="config-structure" class="col-xs-4 col-xs-offset-1 col-form-label">Structure : </label>
