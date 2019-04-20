@@ -34,6 +34,7 @@ You can set our own size for
 - Training (55000 max)
 - Testing (5000 max)
 - Validating (10000 max)
+
 parts
 
 ### Step 4
