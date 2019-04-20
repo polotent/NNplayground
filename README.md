@@ -31,7 +31,7 @@ If you want more layers (e.g. 2 layers, first consists of 50, and second of 100)
 
 #### Dataset size
 You can set our own size for 
-- Training (50000 max)
+- Training (55000 max)
 - Testing (5000 max)
 - Validating (10000 max)
 parts
