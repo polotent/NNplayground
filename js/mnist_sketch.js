@@ -6,6 +6,9 @@ let files = {};
 let nnMain;
 let nnGuess;
 
+let mnistStuff;
+let qdStuff;
+
 let cnv;
 
 let k = false;
@@ -56,6 +59,11 @@ let stuff = {
   "states" : {}
 };
 
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("mainDiv").style.display = "block";
+}
+
 function preload() {
   files.images60k = loadMNIST('data/mnist/train-images.idx3-ubyte', 16);
   files.labels60k = loadMNIST('data/mnist/train-labels.idx1-ubyte', 8);
@@ -66,6 +74,9 @@ function preload() {
     let buff = item + "10k";
     files[buff] = loadQD('data/quickdraw/' + item + '10k.bin');
   });
+
+  nn100mnist = loadJSON("./models/mnist100.json");
+  nn100qd = loadJSON("./models/quickdraw100.json");
 }
 
 function prepareData() {
@@ -113,28 +124,13 @@ function prepareData() {
     cnt = cnt + 1;
   });
 
-  // let total = 100;
-  // for (let n = 0; n < total; n++) {
-  //   let img = createImage(28, 28);
-  //   img.loadPixels();
-  //   let offset = n * 784;
-  //   for (let i = 0; i < 784; i++) {
-  //     let val = qd_dataset.training[n][i];
-  //     img.pixels[i * 4 + 0] = val;
-  //     img.pixels[i * 4 + 1] = val;
-  //     img.pixels[i * 4 + 2] = val;
-  //     img.pixels[i * 4 + 3] = 255;
-  //   }
-  //   img.updatePixels();
-  //   let x = (n % 10) * 28;
-  //   let y = floor(n / 10) * 28;
-  //   image(img, x, y)
-  // }
   shuffle(qd_dataset.training, true);
   shuffle(qd_dataset.validating, true);
   shuffle(qd_dataset.testing, true);
 
   console.log(qd_dataset);
+
+  showPage();
 }
 
 function train(training){
@@ -364,36 +360,20 @@ function setup(){
   els.buttons.mnistLoad = select("#mnist100");
   els.buttons.mnistLoad.mousePressed(function(){
     let buffBool = stuff.drawn;
-    stuff = loadJSON("./models/mnist100.json", function(){
-      updatePage = true;
-      els.labels.filename.html("mnist100");
-      stuff.drawn = buffBool;
-    });
+    stuff = nn100mnist;
+    updatePage = true;
+    els.labels.filename.html("mnist100");
+    stuff.drawn = buffBool;
   });
 
   els.buttons.qdLoad = select("#quickdraw100");
   els.buttons.qdLoad.mousePressed(function(){
     let buffBool = stuff.drawn;
-    stuff = loadJSON("./models/quickdraw100.json", function(){
-      updatePage = true;
-      els.labels.filename.html("quickdraw100");
-      stuff.drawn = buffBool;
-    });
+    stuff = nn100qd;
+    updatePage = true;
+    els.labels.filename.html("quickdraw100");
+    stuff.drawn = buffBool;
   });
-
-  // UPLOAD BUTTON
-  // els.buttons.upload = select("#upload");
-  // els.buttons.upload.mousePressed(function(){
-  //   if (currentPath != ""){
-  //     let buffBool = stuff.drawn;
-  //     stuff = loadJSON(currentPath, function(){
-  //       updatePage = true;
-  //       let buff = currentFilename.substring(0, currentFilename.lastIndexOf('.'));
-  //       els.labels.filename.html(buff);
-  //       stuff.drawn = buffBool;
-  //     });
-  //   }
-  // });
 
   //RESET BUTTON
   els.buttons.reset = select("#reset");

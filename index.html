@@ -49,182 +49,187 @@
 
   </head>
   <body>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12 header">
-          <select class="form-control" id="select-zone">
-                <option>MNIST</option>
-                <option>QUICKDRAW</option>
-              </select>
-					<h1 class="zone-label">PLAYGROUND</h1>
-				</div>
-			</div>
+    <div class="container" id="loader">
+      <div class="row loader" style="height : 100px;">
+        <div id="loader-spinner"></div>
+      </div>
+      <div class="row loader">
+        <h3>NNplayground is being prepared...</h3>
+      </div>
+    </div>
+    <div style="display:none" id="mainDiv" class="animate-bottom">
+  		<div class="container-fluid" >
+  			<div class="row">
+  				<div class="col-xs-12 header">
+            <select class="form-control" id="select-zone">
+                  <option>MNIST</option>
+                  <option>QUICKDRAW</option>
+                </select>
+  					<h1 class="zone-label">PLAYGROUND</h1>
+  				</div>
+  			</div>
+  		</div>
 
-		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-xs-12 col-md-6">
-          <div class="row padd">
-            <div class="col-xs-12 upload-header">
-              <h2>UPLOAD MODEL</h2>
-            </div>
-
-            <div class="col-xs-12 upload-field">
-              <div class="row">
-                <div class="col-xs-6">
-                  <h3>UPLOAD FILE FROM YOUR COMPUTER</h3>
-                  <label class="pickField" for="files">CHOOSE FILE</label>
-                </div>
-                <div class="col-xs-6">
-                  <h3>TRAINED MODELS</h3>
-                  <label id="mnist100" class="pickField mnist-label">MNIST 1 layer 100 neurons</label>
-                  <label id="quickdraw100" class="pickField quickdraw-label">QUICKDRAW 1 layer 100 neurons</label>
-                </div>
-
-                <div class="col-xs-12">
-                  <input type="file" id="files" name="files[]" onchange="loadFile(event)">
-                  <!-- <h3 class="upload-filename">CHOOSEN FILE : <span id="upload-filename">NONE</span></h3> -->
-                </div>
+  		<div class="container-fluid">
+  			<div class="row">
+  				<div class="col-xs-12 col-md-6">
+            <div class="row padd">
+              <div class="col-xs-12 upload-header">
+                <h2>UPLOAD MODEL</h2>
               </div>
 
-              <!-- <button id="upload" type="button" class="btn btn-primary">UPLOAD</button> -->
+              <div class="col-xs-12 upload-field">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <h3>UPLOAD FILE FROM YOUR COMPUTER</h3>
+                    <label class="pickField" for="files">CHOOSE FILE</label>
+                  </div>
+                  <div class="col-xs-6">
+                    <h3>TRAINED MODELS</h3>
+                    <label id="mnist100" class="pickField mnist-label">MNIST 1 layer 100 neurons</label>
+                    <label id="quickdraw100" class="pickField quickdraw-label">QUICKDRAW 1 layer 100 neurons</label>
+                  </div>
 
-              <h3>LOADED MODEL : <span id="filename">UNTITLED</span></h3>
-              <button id="reset" type="button" class="btn btn-danger">RESET</button>
+                  <div class="col-xs-12">
+                    <input type="file" id="files" name="files[]" onchange="loadFile(event)">
+                  </div>
+                </div>
+                <h3>LOADED MODEL : <span id="filename">UNTITLED</span></h3>
+                <button id="reset" type="button" class="btn btn-danger">RESET</button>
+              </div>
             </div>
-          </div>
 
-          <div class="row padd">
-            <div class="col-xs-12 config-header">
-              <h2>CONFIGURATION</h2>
+            <div class="row padd">
+              <div class="col-xs-12 config-header">
+                <h2>CONFIGURATION</h2>
+              </div>
+
+              <div class="col-xs-12 config-field">
+                <h3>MULTILAYER PERCEPTRON</h3>
+                <form>
+                  <div class="form-group row config-line">
+                    <label for="config-structure" class="col-xs-4 col-xs-offset-1 col-form-label">Structure : </label>
+                    <div class="col-xs-3">
+                      <input type="text" class="form-control" id="config-structure" value="100" onchange="hideNotif(event)">
+                    </div>
+                  </div>
+
+                  <div class="form-group row config-line">
+                    <label for="config-lr" class="col-xs-4 col-xs-offset-1 col-form-label">Learning rate : </label>
+                    <div class="col-xs-3">
+                      <input type="text" class="form-control" id="config-lr" value="0.2" onchange="hideNotif(event)">
+                    </div>
+                  </div>
+
+                  <div class="form-group row config-line">
+                    <label for="config-train-size" class="col-xs-4 col-xs-offset-1 col-form-label">Training dataset : </label>
+                    <div class="col-xs-3">
+                      <input type="number" class="form-control" id="config-train-size" value="55000" min="0" max="55000" onchange="hideNotif(event)">
+                    </div>
+                  </div>
+
+                  <div class="form-group row config-line">
+                    <label for="config-validate-size" class="col-xs-4 col-xs-offset-1 col-form-label">Validating dataset : </label>
+                    <div class="col-xs-3">
+                      <input type="number" class="form-control" id="config-validate-size" value="5000" min="0" max="5000" onchange="hideNotif(event)">
+                    </div>
+                  </div>
+
+                  <div class="form-group row config-line">
+                    <label for="config-test-size" class="col-xs-4 col-xs-offset-1 col-form-label">Testing dataset : </label>
+                    <div class="col-xs-3">
+                      <input type="number" class="form-control" id="config-test-size" value="10000" min="0" max="10000" onchange="hideNotif(event)">
+                    </div>
+                  </div>
+
+                  <button id="submit" type="button" class="btn btn-primary">SUBMIT</button>
+
+                  <h3 id="change-notification">CHANGES APPROVED</h3>
+                </form>
+
+              </div>
             </div>
 
-            <div class="col-xs-12 config-field">
-              <h3>MULTILAYER PERCEPTRON</h3>
-              <form>
-                <div class="form-group row config-line">
-                  <label for="config-structure" class="col-xs-4 col-xs-offset-1 col-form-label">Structure : </label>
-                  <div class="col-xs-3">
-                    <input type="text" class="form-control" id="config-structure" value="100" onchange="hideNotif(event)">
+
+  					<div class="row padd">
+  						<div class="col-xs-12 training-header">
+  							<h2>TRAINING</h2>
+  						</div>
+
+  						<div class="col-xs-12 training-field">
+  							<button id="control" type="button" class="btn btn-success">START</button>
+
+                <h3 class="status-header">STATUS : <span id="status-label">Training</span> <span id="status-epoch">epoch <span id="status-id"> 1</span></span></h3>
+
+  							<h3 class="progress-header">PROGRESS</h3>
+  							<div class="progress">
+  							  <div id="progress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100">0%</div>
+  							</div>
+
+  						</div>
+  					</div>
+  					<div class="row padd">
+  						<div class="col-xs-12 testing-header">
+  							<h2>VALIDATING / TESTING</h2>
+  						</div>
+
+  						<div class="col-xs-12 testing-field">
+
+                <h3 class="chart-header">ERRORS</h3>
+                <div class="chart">
+                  <canvas id="error-chart" width="300" height="150"></canvas>
+                </div>
+
+  						</div>
+  					</div>
+  				</div>
+
+  				<div class="col-xs-12 col-md-6">
+  					<div class="row padd">
+  						<div class="col-xs-12 guessing-header">
+  							<h2>GUESSING</h2>
+  						</div>
+
+              <div class="col-xs-12 guessing-field">
+                <h3 class="select-header">SELECT NEURAL NETWORK STATE : </h3>
+                <div class="row">
+                  <div class="col-xs-6 col-xs-offset-3">
+                    <select class="form-control" id="select-state">
+                    </select>
                   </div>
                 </div>
 
-                <div class="form-group row config-line">
-                  <label for="config-lr" class="col-xs-4 col-xs-offset-1 col-form-label">Learning rate : </label>
-                  <div class="col-xs-3">
-                    <input type="text" class="form-control" id="config-lr" value="0.2" onchange="hideNotif(event)">
+                <h3 class="challange-header">LET ME TRY TO GUESS</h3>
+                <h3 id="item-list"></h3>
+                <button id="clear" type="button" class="btn btn-danger">CLEAR CANVAS</button>
+
+                <div id="guessing-canvas"></div>
+
+                <div class="guessing-answer">
+                  <h3 id="advice">DRAW SOMETHING!</h3>
+                  <span id="prediction"></span>
+                </div>
+              </div>
+  					</div>
+
+            <div class="row padd">
+              <div class="col-xs-12 save-header">
+                <h2>SAVE MODEL</h2>
+              </div>
+              <div class="col-xs-12 save-field">
+                <div class="row">
+                  <div class="col-xs-6 col-xs-offset-3">
+                    <input type="text" class="form-control" id="model-name" value="Untitiled">
                   </div>
                 </div>
 
-                <div class="form-group row config-line">
-                  <label for="config-train-size" class="col-xs-4 col-xs-offset-1 col-form-label">Training dataset : </label>
-                  <div class="col-xs-3">
-                    <input type="number" class="form-control" id="config-train-size" value="55000" min="0" max="55000" onchange="hideNotif(event)">
-                  </div>
-                </div>
-
-                <div class="form-group row config-line">
-                  <label for="config-validate-size" class="col-xs-4 col-xs-offset-1 col-form-label">Validating dataset : </label>
-                  <div class="col-xs-3">
-                    <input type="number" class="form-control" id="config-validate-size" value="5000" min="0" max="5000" onchange="hideNotif(event)">
-                  </div>
-                </div>
-
-                <div class="form-group row config-line">
-                  <label for="config-test-size" class="col-xs-4 col-xs-offset-1 col-form-label">Testing dataset : </label>
-                  <div class="col-xs-3">
-                    <input type="number" class="form-control" id="config-test-size" value="10000" min="0" max="10000" onchange="hideNotif(event)">
-                  </div>
-                </div>
-
-                <button id="submit" type="button" class="btn btn-primary">SUBMIT</button>
-
-                <h3 id="change-notification">CHANGES APPROVED</h3>
-              </form>
-
-            </div>
-          </div>
-
-
-					<div class="row padd">
-						<div class="col-xs-12 training-header">
-							<h2>TRAINING</h2>
-						</div>
-
-						<div class="col-xs-12 training-field">
-							<button id="control" type="button" class="btn btn-success">START</button>
-
-              <h3 class="status-header">STATUS : <span id="status-label">Training</span> <span id="status-epoch">epoch <span id="status-id"> 1</span></span></h3>
-
-							<h3 class="progress-header">PROGRESS</h3>
-							<div class="progress">
-							  <div id="progress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100">0%</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="row padd">
-						<div class="col-xs-12 testing-header">
-							<h2>VALIDATING / TESTING</h2>
-						</div>
-
-						<div class="col-xs-12 testing-field">
-
-              <h3 class="chart-header">ERRORS</h3>
-              <div class="chart">
-                <canvas id="error-chart" width="300" height="150"></canvas>
-              </div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-md-6">
-					<div class="row padd">
-						<div class="col-xs-12 guessing-header">
-							<h2>GUESSING</h2>
-						</div>
-
-            <div class="col-xs-12 guessing-field">
-              <h3 class="select-header">SELECT NEURAL NETWORK STATE : </h3>
-              <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                  <select class="form-control" id="select-state">
-                  </select>
-                </div>
-              </div>
-
-              <h3 class="challange-header">LET ME TRY TO GUESS</h3>
-              <h3 id="item-list"></h3>
-              <button id="clear" type="button" class="btn btn-danger">CLEAR CANVAS</button>
-
-              <div id="guessing-canvas"></div>
-
-              <div class="guessing-answer">
-                <h3 id="advice">DRAW SOMETHING!</h3>
-                <span id="prediction"></span>
+                <button id="save" type="button" class="btn btn-primary">SAVE</button>
               </div>
             </div>
-					</div>
 
-          <div class="row padd">
-            <div class="col-xs-12 save-header">
-              <h2>SAVE MODEL</h2>
-            </div>
-            <div class="col-xs-12 save-field">
-              <div class="row">
-                <div class="col-xs-6 col-xs-offset-3">
-                  <input type="text" class="form-control" id="model-name" value="Untitiled">
-                </div>
-              </div>
-
-              <button id="save" type="button" class="btn btn-primary">SAVE</button>
-            </div>
-          </div>
-
-				</div>
-			</div>
-		</div>
-
+  				</div>
+  			</div>
+  		</div>
+    </div>
   </body>
 </html>
