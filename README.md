@@ -10,8 +10,6 @@ There are 2 datasets available. MNIST (10 digits) and QUICKDRAW (10 categories).
 ### Step 1
 Choose zone.
 
-![Zone](screenshots/Screenshot_7.png)
-
 
 ### Step 2
 If you want to train your own NN, than press "RESET" button.
