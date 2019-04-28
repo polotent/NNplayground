@@ -5,7 +5,7 @@ Link to the project website https://polotent.github.io/NNplayground
 NNplayground is a web platform, where you can train and test your own modification of neural network (multilayer perceptron). 
 There are 2 datasets available. MNIST (10 digits) and QUICKDRAW (10 categories).
  
-## Manual
+## Getting Started
 
 ### Step 1
 Choose zone.
@@ -45,11 +45,11 @@ You can pause, pressing "STOP" button, or just making your current tab inactive.
 After the training phase is complete, you can now finally look at the results. Go to guessing window and choose
 epoch. You can draw in a black field, and your trained network will try to guess, what is drawn there. 
 Something like this:
-![Guessing]()
+![Guessing](screenshots/Screenshot_1.png)
 
 
 ### Step 6
-If you like your network, you can save it locally on your machine, and use later. Just input a name and press "SAVE".
+If you like your network configuration, you can save it locally on your machine, and use later. Just input a name and press "SAVE".
 
 ## Used libraries and frameworks
 - p5.js
