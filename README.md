@@ -29,6 +29,9 @@ If you want more layers (e.g. 2 layers, first consists of 50, and second of 100)
 
 *Structure : 50, 100*
 
+![Configuration](screenshots/Screenshot_4.png)
+
+
 #### Dataset size
 You can set our own size for 
 - Training (55000 max)
@@ -41,10 +44,14 @@ parts
 Train. Notice, that your neural network will be training only while your current browser tab is active.
 You can pause, pressing "STOP" button, or just making your current tab inactive.
 
+![Training](screenshots/Screenshot_5.png)
+
+
 ### Step 5
 After the training phase is complete, you can now finally look at the results. Go to guessing window and choose
 epoch. You can draw in a black field, and your trained network will try to guess, what is drawn there. 
 Something like this:
+
 ![Guessing](screenshots/Screenshot_1.png)
 
 
