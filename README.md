@@ -72,7 +72,7 @@ If you like your network configuration, you can save it locally on your machine,
 ## Ideas, used in project
 - drawing normalization https://codepen.io/MaciejCaputa/pen/KXbJWR
 
-## Literatue and helpful content
+## Literature and helpful content
 - https://www.amazon.com/Make-Your-Own-Neural-Network/dp/1530826608
 - https://www.youtube.com/playlist?list=PLRqwX-V7Uu6Zs14zKVuTuit6jApJgoYZQ
 
